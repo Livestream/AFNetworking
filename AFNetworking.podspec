@@ -12,13 +12,16 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '5.0'
   s.ios.frameworks = 'MobileCoreServices', 'SystemConfiguration', 'Security', 'CoreGraphics'
 
+  s.tvos.deployment_target = '9.0'
+  s.tvos.frameworks = 'MobileCoreServices', 'SystemConfiguration', 'Security', 'CoreGraphics'
+
   s.osx.deployment_target = '10.7'
   s.osx.frameworks = 'CoreServices', 'SystemConfiguration', 'Security'
 
   s.prefix_header_contents = <<-EOS
 #import <Availability.h>
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED
+#if (__IPHONE_OS_VERSION_MIN_REQUIRED || __TV_OS_VERSION_MIN_REQUIRED)
   #import <SystemConfiguration/SystemConfiguration.h>
   #import <MobileCoreServices/MobileCoreServices.h>
   #import <Security/Security.h>
